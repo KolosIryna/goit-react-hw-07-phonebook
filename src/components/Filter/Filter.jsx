@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectorContactsFilter } from 'redux/contacts/selectors';
+import { selectorfilter } from 'redux/contacts/selectors';
 import { setFilter } from 'redux/contacts/sliceContacts';
 
 export const Filter = () => {
-  const filter = useSelector(selectorContactsFilter);
+  const filter = useSelector(selectorfilter);
   const dispatch = useDispatch();
 
   const handleFilterChange = ({ target: { value } }) => {
