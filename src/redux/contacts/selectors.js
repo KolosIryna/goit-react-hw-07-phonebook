@@ -1,23 +1,23 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-const selectContactsStore = state => state.contacts;
+const selectContactsStore = state => state.contactsStore;
 
 export const selectorContacts = createSelector(
   [selectContactsStore],
-  contacts => contacts.contacts.items
+  contactsStore => contactsStore.contacts.items
 );
 
 export const selectorContactsIsLoading = createSelector(
   [selectContactsStore],
-  contacts => contacts.contacts.isLoading
+  contactsStore => contactsStore.contacts.isLoading
 );
 
 export const selectorContactsError = createSelector(
   [selectContactsStore],
-  contacts => contacts.contacts.error
+  contactsStore => contactsStore.contacts.error
 );
 
 export const selectorContactsFilter = createSelector(
   [selectContactsStore],
-  contacts => contacts.filter
+  contactsStore => contactsStore.filter
 );
