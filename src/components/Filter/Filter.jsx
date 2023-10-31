@@ -24,6 +24,7 @@ export const Filter = () => {
             fontSize: '16px',
             border: '1px solid #ccc',
             borderRadius: '4px',
+            width: '300px',
           }}
         />
       </form>

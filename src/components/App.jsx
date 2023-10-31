@@ -7,10 +7,12 @@ import css from './App.module.css';
 export const App = () => {
   return (
     <div className={css.container}>
-      <PhoneForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <Contacts />
+      <div className={css.appstyled}>
+        <PhoneForm />
+        <h2 className={css.text}>Contacts</h2>
+        <Filter />
+        <Contacts />
+      </div>
     </div>
   );
 };

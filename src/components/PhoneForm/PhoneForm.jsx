@@ -32,10 +32,10 @@ export const PhoneForm = () => {
   };
 
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <div className={css.phoneform}>
+      <h1 className={css.text}>Phonebook</h1>
       <form onSubmit={handleSubmit} className={css.form}>
-        <label>
+        <label className={css.label}>
           <span className={css.title}>Name</span>
           <input
             className={css.input}
