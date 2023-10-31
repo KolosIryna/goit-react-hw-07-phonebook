@@ -26,25 +26,30 @@ export const Contacts = () => {
     dispatch(deleteContact(contactId));
   };
 
-  const getFilteredContacts = contacts.filter(contact =>
+  const getFilteredContacts = contacts.items.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase().trim())
   );
 
   return (
     <div>
       <ul>
-        {getFilteredContacts.map(contact => (
-          <li key={contact.id} className={css.item}>
-            {contact.name}: {contact.number}
-            <button
-              className={css.button}
-              onClick={() => handleDeleteContact(contact.id)}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
+        {getFilteredContacts.length > 0 ? (
+          getFilteredContacts.map(contact => (
+            <li key={contact.id} className={css.item}>
+              {contact.name}: {contact.number}
+              <button
+                className={css.button}
+                onClick={() => handleDeleteContact(contact.id)}
+              >
+                Delete
+              </button>
+            </li>
+          ))
+        ) : (
+          <p>No contacts found</p>
+        )}
       </ul>
+
       {isLoading && <Loader />}
       {error && <p>Oppsss Erorr</p>}
     </div>

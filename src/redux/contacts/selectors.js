@@ -4,20 +4,20 @@ const selectContactsStore = state => state.contacts;
 
 export const selectorContacts = createSelector(
   [selectContactsStore],
-  contactsStore => contactsStore.contacts.items
+  contacts => contacts.contacts.items
 );
 
 export const selectorContactsIsLoading = createSelector(
   [selectContactsStore],
-  contactsStore => contactsStore.contacts.isLoading
+  contacts => contacts.contacts.isLoading
 );
 
 export const selectorContactsError = createSelector(
   [selectContactsStore],
-  contactsStore => contactsStore.contacts.error
+  contacts => contacts.contacts.error
 );
 
 export const selectorContactsFilter = createSelector(
   [selectContactsStore],
-  contactsStore => contactsStore.filter
+  contacts => contacts.filter
 );
