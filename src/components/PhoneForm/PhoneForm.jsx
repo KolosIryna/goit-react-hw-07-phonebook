@@ -1,46 +1,24 @@
-import React, { useState } from 'react';
-import { nanoid } from '@reduxjs/toolkit';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contacts/sliceContacts';
-import { selectorContacts } from 'redux/contacts/selectors';
+
 import css from './PhoneForm.module.css';
 
 export const PhoneForm = () => {
-  const contacts = useSelector(selectorContacts);
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
   const dispatch = useDispatch();
-
-  const handleInputChange = event => {
-    const { name, value } = event.target;
-    if (name === 'name') {
-      setName(value);
-    } else if (name === 'number') {
-      setNumber(value);
-    }
-  };
-
-  const handleAddNewContact = formData => {
-    const isNameExist = contacts.some(
-      contact => contact.name.toLowerCase() === formData.name.toLowerCase()
-    );
-
-    if (isNameExist) {
-      alert(`${formData.name} is already in contacts.`);
-    } else {
-      const newContact = {
-        id: nanoid(),
-        ...formData,
-      };
-      dispatch(addContact(newContact));
-      setName('');
-      setNumber('');
-    }
-  };
 
   const handleSubmit = event => {
     event.preventDefault();
-    handleAddNewContact({ name, number });
+
+    const name = event.currentTarget.elements.name.value;
+    const number = event.currentTarget.elements.number.value;
+
+    const newContact = {
+      name,
+      number,
+    };
+
+    dispatch(addContact(newContact));
+    event.currentTarget.reset();
   };
 
   return (
@@ -51,8 +29,6 @@ export const PhoneForm = () => {
           <span className={css.title}>Name</span>
           <input
             className={css.input}
-            onChange={handleInputChange}
-            value={name}
             name="name"
             type="text"
             required
@@ -61,8 +37,6 @@ export const PhoneForm = () => {
           <span className={css.title}>Number</span>
           <input
             className={css.input}
-            onChange={handleInputChange}
-            value={number}
             type="tel"
             name="number"
             required
