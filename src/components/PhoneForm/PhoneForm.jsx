@@ -1,16 +1,26 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/sliceContacts';
+import { selectorContacts } from 'redux/contacts/selectors';
 
 import css from './PhoneForm.module.css';
 
 export const PhoneForm = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(selectorContacts);
 
   const handleSubmit = event => {
     event.preventDefault();
 
     const name = event.currentTarget.elements.name.value;
     const number = event.currentTarget.elements.number.value;
+
+    const isNameExist = contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+    if (isNameExist) {
+      alert(`${name} is already in contacts.`);
+      return;
+    }
 
     const newContact = {
       name,
